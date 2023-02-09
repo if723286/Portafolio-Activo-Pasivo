@@ -20,10 +20,10 @@ Or you can manually install one by one using the name and version in the file.
 
 ## Funcionalities
 
-*Add here examples of core functionalities for the project in this repository.*
+*Con este ´royecto es posible deteminar si es mejor invertir en un ETF (un activo que replique un indice) o hacer nuestro propio portafolio y administrarlo mes con mes.*
 
 ## Author
-*Soy Blas Sánchez, estudainte de ultimo semestre de Ingenieria Financiera en la Universidad Jesuita de Guadalajara ITESO.*
+*Soy Blas Sánchez, estudiante de ultimo semestre de Ingenieria Financiera en la Universidad Jesuita de Guadalajara ITESO.*
 
 ## License
 **GNU General Public License v3.0** 
