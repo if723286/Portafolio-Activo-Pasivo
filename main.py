@@ -1,48 +1,40 @@
 
 """
 # -- --------------------------------------------------------------------------------------------------- -- #
-# -- project: A SHORT DESCRIPTION OF THE PROJECT                                                         -- #
+# -- project: Avtive investment vs Pasive investment                                                        -- #
 # -- script: main.py : python script with the main functionality                                         -- #
-# -- author: YOUR GITHUB USER NAME                                                                       -- #
+# -- author: if723286                                                                       -- #
 # -- license: GPL-3.0 License                                                                            -- #
-# -- repository: YOUR REPOSITORY URL                                                                     -- #
+# -- repository: https://github.com/if723286/Portafolio-Activo-Pasivo                                                                     -- #
 # -- --------------------------------------------------------------------------------------------------- -- #
 """
 
 import pandas as pd
-import data as dt
+import os
+import pandas as pd
 
-# -- TEST 1 : 
-# verify that the script is being read
-print(dt.dict_test)
+# directory containing the csv files
+directory = 'files'
 
-# -- TEST 2 :
-# verify that installed pandas module works correctly
-df_dict_test = pd.DataFrame(dt.dict_test, index=[0, 1])
-print(df_dict_test)
 
-# -- TEST 3 :
-# verify you can use plotly and visualize plots in jupyter notebook
 
-import chart_studio.plotly as py   # various tools (jupyter offline print)
-import plotly.graph_objects as go  # plotting engine
+columns = ['Ticker']
+df_global = pd.DataFrame(columns=columns)
 
-# example data
-df = pd.DataFrame({'column_a': [1, 2, 3, 4, 5], 'column_b': [1, 2, 3, 4, 5]})
-# basic plotly plot
-data = [go.Bar(x=df['column_a'], y=df['column_b'])]
-# instruction to view it inside jupyter
-py.iplot(data, filename='jupyter-basic_bar')
-# (alternatively) instruction to view it in web app of plotly
-# py.plot(data)
+# loop through all the files in the directory
+for filename in os.listdir(directory):
+    # check if the file is a csv file
+    if filename.endswith(".csv"):
+        # read the csv file and store it in a data frame
+        df = pd.read_csv(os.path.join(directory, filename), skiprows=2, usecols=["Ticker"])
+        # append the data frame to the list
+        df_global = pd.concat([df_global, df])
+        
+df_global
 
-# -- TEST 4 :
-# verify you can use plotly and visualize plots in web browser locally
 
-import plotly.io as pio            # to define input-output of plots
-pio.renderers.default = "browser"  # to render the plot locally in your default web browser
+occurrences = df_global['Ticker'].value_counts()
+occurrences
 
-# basic plotly plot
-plot_data = go.Figure(go.Bar(x=df['column_a'], y=df['column_b']))
-# instruction to view it in specified render (in this case browser)
-plot_data.show()
+#### Eligire solamente las acciones que hayan aparecido las 25 veces en el NAFTRAC, en total son 34 acciones:
+print(occurrences.head(33))
