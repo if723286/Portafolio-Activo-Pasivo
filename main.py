@@ -15,6 +15,8 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 from scipy.optimize import minimize
+import matplotlib.pyplot as plt
+
 
 #%% directory containing the csv files
 directory = 'files'
